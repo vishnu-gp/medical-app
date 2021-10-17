@@ -13,6 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', App\Http\Livewire\PatientTable::class);
+Route::get('/patient_create', App\Http\Livewire\PatientCreate::class);
