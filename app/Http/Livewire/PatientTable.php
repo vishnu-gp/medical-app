@@ -25,7 +25,6 @@ class PatientTable extends DataTableComponent
 
     public function columns(): array
     {
-        //echo json_encode(Patient::first()); exit;
         return [
             Column::make('Id')
                 ->sortable()

@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', App\Http\Livewire\PatientTable::class);
 Route::get('/patient_create', App\Http\Livewire\PatientCreate::class);
+Route::get('/bp_log/{patient_id}', App\Http\Livewire\BpLog::class);
