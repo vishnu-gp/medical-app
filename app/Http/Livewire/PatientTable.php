@@ -6,9 +6,22 @@ use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Patient;
+use App\Exports\PatientsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PatientTable extends DataTableComponent
 {
+
+    public array $bulkActions = [
+        'export' => 'Export',
+    ];
+
+
+    public function export()
+    {
+        
+        return Excel::download(new PatientsExport, 'patients.xlsx');
+    }
 
     public function columns(): array
     {
