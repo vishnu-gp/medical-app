@@ -14,8 +14,19 @@ class PatientSeeder extends Seeder
      */
     public function run()
     {
-        Patient::factory()
-            ->count(50000)
-            ->create();
+        $faker = \Faker\Factory::create();
+        
+        for ($i=0; $i < 50000; $i++) {
+            $patientData[] = [
+                'name' => $faker->name(),
+                'email' => $faker->unique()->safeEmail(),
+            ];
+        }
+
+        $chunks = array_chunk($patientData, 5000);
+
+        foreach ($chunks as $chunk) {
+            Patient::insert($chunk);
+        }
     }
 }
