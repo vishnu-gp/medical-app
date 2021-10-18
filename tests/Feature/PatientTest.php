@@ -36,5 +36,54 @@ class PatientTest extends TestCase
             $this->assertTrue(true);
     }
 
+    /**
+     * Patients page render test.
+     *
+     * @return void
+     */
+    public function test_patients_page_render()
+    {
+        $response = $this->get(route('patients'));
+
+        $response->assertSuccessful();
+    }
+
+    /**
+     * Patient create page render test.
+     *
+     * @return void
+     */
+    public function test_patient_create_page_render()
+    {
+        $response = $this->get(route('patient_create'));
+
+        $response->assertSuccessful();
+    }
+
+    /**
+     * Patient log BP render test.
+     *
+     * @return void
+     */
+    public function test_patient_log_bp_page_render()
+    {
+        $patient = Patient::factory()->create();
+        $response = $this->get(route('bp_log', ['patient_id' => $patient->id]));
+
+        $response->assertSuccessful();
+    }
+
+    /**
+     * Patient log BP render test.
+     *
+     * @return void
+     */
+    public function test_patient_log_bp_page_render_failure()
+    {
+        $patient = Patient::factory()->create();
+        $response = $this->get(route('bp_log', ['patient_id' => $patient->id+1]));
+        
+        $response->assertStatus(302);
+    }
 
 }
