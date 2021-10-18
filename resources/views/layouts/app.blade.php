@@ -41,6 +41,13 @@
                 <div class="py-12">
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div id="table-container" class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-4">
+                            @if (request()->routeIs('patients'))
+                            <a href="{{ route('patient_create') }}">
+                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                    Create Patient 
+                                </button>
+                            </a>
+                            @endif
                             {{ $slot }}
                         </div>
                     </div>

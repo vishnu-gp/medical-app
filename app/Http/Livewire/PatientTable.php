@@ -36,11 +36,17 @@ class PatientTable extends DataTableComponent
                 ->sortable()
                 ->searchable(),
             Column::make('Latest BP', 'latest_bp'),
+            Column::make('Actions', ''),
         ];
     }
 
     public function query(): Builder
     {
         return Patient::query();
+    }
+
+    public function rowView(): string
+    {
+        return 'livewire.row.patient';
     }
 }
